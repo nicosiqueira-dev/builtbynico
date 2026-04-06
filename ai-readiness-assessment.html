@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Readiness Assessment | Nico Builds AI</title>
+    <meta name="description" content="Take our free AI readiness assessment to discover how AI can help your business.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: linear-gradient(135deg, #fef7e0 0%, #f9f7f4 100%);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 { font-size: 2.8rem; line-height: 1.1; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.3rem; }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .header h1 { color: white; margin-bottom: 1rem; }
+        .header p { font-size: 1.2rem; opacity: 0.9; }
+        
+        /* Assessment Section */
+        .assessment {
+            padding: 4rem 0;
+        }
+        
+        .quiz-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .question {
+            display: none;
+            margin-bottom: 2rem;
+        }
+        
+        .question.active { display: block; }
+        
+        .question h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .option {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+        
+        .option.selected {
+            border-color: #667eea;
+            background: #e6fffa;
+        }
+        
+        .option h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .option p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Results */
+        .results {
+            display: none;
+            text-align: center;
+        }
+        
+        .score-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+        
+        .score-number {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .score-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .recommendation {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .recommendation h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            margin: 1rem 0;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .container { padding: 0 1.25rem; }
+            .quiz-container { padding: 2rem 1.5rem; }
+            .nav-buttons { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <section class="header">
+        <div class="container">
+            <h1>AI Readiness Assessment</h1>
+            <p>Discover how AI can transform your business in just 2 minutes</p>
+        </div>
+    </section>
+
+    <!-- Assessment -->
+    <section class="assessment">
+        <div class="container">
+            <div class="quiz-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="question active" data-question="1">
+                    <h3>What best describes your business?</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 'service')" data-value="service">
+                            <h4>Service Business</h4>
+                            <p>Doctor, lawyer, gym, salon, consultant, etc.</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'retail')" data-value="retail">
+                            <h4>Retail/Restaurant</h4>
+                            <p>Store, restaurant, café, physical location</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'online')" data-value="online">
+                            <h4>Online Business</h4>
+                            <p>E-commerce, digital services, SaaS</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'other')" data-value="other">
+                            <h4>Other</h4>
+                            <p>Real estate, B2B, manufacturing, etc.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question" data-question="2">
+                    <h3>How do you currently handle customer follow-ups?</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 'manual')" data-value="manual">
+                            <h4>Manually</h4>
+                            <p>I or my staff personally call/text/email everyone</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'basic')" data-value="basic">
+                            <h4>Basic System</h4>
+                            <p>Simple email list or basic CRM</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'automated')" data-value="automated">
+                            <h4>Automated</h4>
+                            <p>Advanced CRM with automation</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'none')" data-value="none">
+                            <h4>We Don't</h4>
+                            <p>We don't really follow up consistently</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question" data-question="3">
+                    <h3>What's your biggest time waster?</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 'noshow')" data-value="noshow">
+                            <h4>No-shows & Cancellations</h4>
+                            <p>People booking then not showing up</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'questions')" data-value="questions">
+                            <h4>Same Questions</h4>
+                            <p>Answering the same questions over and over</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'admin')" data-value="admin">
+                            <h4>Admin Tasks</h4>
+                            <p>Scheduling, data entry, paperwork</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'followup')" data-value="followup">
+                            <h4>Follow-up</h4>
+                            <p>Remembering to contact people at the right time</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question" data-question="4">
+                    <h3>How comfortable are you with technology?</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 'expert')" data-value="expert">
+                            <h4>Very Comfortable</h4>
+                            <p>I set up my own systems and troubleshoot tech issues</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'good')" data-value="good">
+                            <h4>Pretty Good</h4>
+                            <p>I can learn new software with some guidance</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'basic')" data-value="basic">
+                            <h4>Basic</h4>
+                            <p>I use what I know but need help with new things</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'minimal')" data-value="minimal">
+                            <h4>Minimal</h4>
+                            <p>I prefer simple solutions and hands-on support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question" data-question="5">
+                    <h3>What's your monthly revenue range?</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 'startup')" data-value="startup">
+                            <h4>Under $10k</h4>
+                            <p>Just starting out or very small operation</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'growing')" data-value="growing">
+                            <h4>$10k - $50k</h4>
+                            <p>Growing business with steady clients</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'established')" data-value="established">
+                            <h4>$50k - $200k</h4>
+                            <p>Established business, ready to scale</p>
+                        </div>
+                        <div class="option" onclick="selectOption(this, 'mature')" data-value="mature">
+                            <h4>$200k+</h4>
+                            <p>Mature business looking for optimization</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" style="display: none;">Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+                </div>
+
+                <!-- Results -->
+                <div class="results" id="results">
+                    <div class="score-display">
+                        <div class="score-number" id="scoreNumber">0</div>
+                        <div class="score-label">AI Readiness Score</div>
+                    </div>
+                    <div class="recommendation" id="recommendation">
+                        <!-- Dynamic content based on score -->
+                    </div>
+                    <a href="https://calendly.com/nicosiqueira/new-meeting" class="cta-button">Get Your Custom AI Demo</a>
+                    <p style="margin-top: 1rem; color: #718096;">Free 15-minute consultation with Nico</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentQuestion = 1;
+        let answers = {};
+        const totalQuestions = 5;
+
+        function selectOption(element, value) {
+            // Remove selection from other options in this question
+            element.parentNode.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            // Select this option
+            element.classList.add('selected');
+            // Store the answer
+            answers[currentQuestion] = value;
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                // Hide current question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                currentQuestion++;
+                // Show next question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                // Update progress
+                updateProgress();
+                // Update navigation
+                updateNavigation();
+                // Disable next button until selection
+                document.getElementById('nextBtn').disabled = !answers[currentQuestion];
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                // Hide current question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                currentQuestion--;
+                // Show previous question
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                // Update progress
+                updateProgress();
+                // Update navigation
+                updateNavigation();
+                // Enable next button if answer exists
+                document.getElementById('nextBtn').disabled = !answers[currentQuestion];
+            }
+        }
+
+        function updateProgress() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (currentQuestion === 1) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+            }
+            
+            if (currentQuestion === totalQuestions) {
+                nextBtn.textContent = 'Get My Results';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+        }
+
+        function calculateScore() {
+            let score = 0;
+            
+            // Business type scoring
+            const businessTypes = { service: 25, retail: 20, online: 30, other: 15 };
+            score += businessTypes[answers[1]] || 0;
+            
+            // Follow-up scoring (higher scores for more manual = more opportunity)
+            const followupTypes = { manual: 25, basic: 15, automated: 5, none: 30 };
+            score += followupTypes[answers[2]] || 0;
+            
+            // Time waster scoring (all high impact)
+            const timeWasters = { noshow: 25, questions: 20, admin: 15, followup: 25 };
+            score += timeWasters[answers[3]] || 0;
+            
+            // Tech comfort (all can work with proper support)
+            const techLevels = { expert: 15, good: 20, basic: 25, minimal: 20 };
+            score += techLevels[answers[4]] || 0;
+            
+            // Revenue (ability to invest)
+            const revenueLevels = { startup: 5, growing: 15, established: 25, mature: 20 };
+            score += revenueLevels[answers[5]] || 0;
+            
+            return Math.min(score, 100);
+        }
+
+        function getRecommendation(score) {
+            if (score >= 80) {
+                return {
+                    title: "🚀 Perfect AI Candidate!",
+                    content: "Your business is ideal for AI automation. You have clear pain points that AI can solve immediately, and the revenue to make it worthwhile. You could see ROI within the first month.",
+                    action: "Book a demo to see exactly what AI can do for your business."
+                };
+            } else if (score >= 60) {
+                return {
+                    title: "✅ Great AI Opportunity",
+                    content: "AI could solve several major pain points in your business. With the right setup and support, you could automate away hours of manual work every week.",
+                    action: "Let's discuss which AI solutions would give you the biggest impact first."
+                };
+            } else if (score >= 40) {
+                return {
+                    title: "💡 Good AI Potential",
+                    content: "There are definitely areas where AI could help your business, especially with the right guidance and support. Starting small and building up would be the best approach.",
+                    action: "Book a consultation to explore which AI tools make the most sense for you."
+                };
+            } else {
+                return {
+                    title: "🌱 AI Could Still Help",
+                    content: "Every business can benefit from AI, even in small ways. The key is finding the right starting point that doesn't overwhelm you or your budget.",
+                    action: "Let's chat about simple AI wins you could implement right away."
+                };
+            }
+        }
+
+        function showResults() {
+            const score = calculateScore();
+            const recommendation = getRecommendation(score);
+            
+            // Hide questions and nav
+            document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+            document.querySelector('.nav-buttons').style.display = 'none';
+            
+            // Show results
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('scoreNumber').textContent = score;
+            
+            // Show recommendation
+            const recEl = document.getElementById('recommendation');
+            recEl.innerHTML = `
+                <h3>${recommendation.title}</h3>
+                <p style="margin-bottom: 1rem;">${recommendation.content}</p>
+                <p><strong>${recommendation.action}</strong></p>
+            `;
+            
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>
