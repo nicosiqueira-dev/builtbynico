@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nico Builds AI | Your Personal AI Guy</title>
+    <meta name="description" content="I set up AI that actually works for your business, and I stick around to make sure it keeps working.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: linear-gradient(135deg, #fef7e0 0%, #f9f7f4 100%);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 { font-size: 3.5rem; line-height: 1.1; }
+        h2 { font-size: 2.3rem; }
+        h3 { font-size: 1.4rem; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Hero Section - V4 style */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+        
+        .hero-content {
+            position: relative;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero h1 span { color: #ffd700; }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+        
+        .cta-secondary {
+            display: inline-block;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.5);
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-secondary:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Trust bar */
+        .trust-bar {
+            background: rgba(102, 126, 234, 0.9);
+            padding: 1rem 0;
+            text-align: center;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+        }
+        .trust-bar span { margin: 0 1.5rem; }
+        .trust-bar strong { color: #ffd700; }
+        
+        /* Sections */
+        .section { padding: 5rem 0; }
+        
+        .section-alt {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: #718096;
+            margin-top: 0.5rem;
+        }
+        
+        /* Story section */
+        .story {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        
+        .story::before {
+            content: '"';
+            font-size: 8rem;
+            color: #667eea;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+        
+        .story p {
+            font-size: 1.15rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+        
+        .story p:last-child { margin-bottom: 0; }
+        .story strong { color: #2d3748; }
+        
+        /* Grid layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        
+        /* Cards */
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card h3 { color: #667eea; margin-bottom: 0.75rem; }
+        .card p { color: #4a5568; }
+        
+        /* Problem cards */
+        .problem-card {
+            border-left: 4px solid #ff6b6b;
+            border-radius: 10px;
+        }
+        .problem-card::before { display: none; }
+        .problem-card h3 { color: #e53e3e; }
+        
+        /* Service cards */
+        .service-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .service-card ul li {
+            padding: 0.4rem 0;
+            color: #4a5568;
+        }
+        .service-card ul li::before {
+            content: '✓ ';
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* Process section */
+        .process {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 0;
+        }
+        
+        .process h2 { color: white; }
+        .process .section-header p { color: rgba(255,255,255,0.8); }
+        
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .process-step { text-align: center; }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .process-step h3 { color: white; margin-bottom: 0.5rem; }
+        .process-step p { opacity: 0.9; }
+        
+        /* Social Proof */
+        .proof-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .proof-card .quote {
+            font-style: italic;
+            color: #4a5568;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .proof-card .name { font-weight: 700; color: #2d3748; }
+        .proof-card .role { color: #718096; font-size: 0.9rem; }
+        
+        /* Pricing */
+        .pricing-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b);
+        }
+        
+        .founding-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .price-item { text-align: center; }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #a0aec0;
+            font-size: 1.1rem;
+        }
+        
+        .price-current {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .price-label {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            max-width: 420px;
+            margin: 2rem auto;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #edf2f7;
+            color: #4a5568;
+        }
+        
+        .pricing-features li::before {
+            content: '✓ ';
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .spots-left {
+            background: #fff5f5;
+            color: #e53e3e;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 1.5rem 0;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            background: white;
+            margin-bottom: 0.75rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+        
+        .faq-question {
+            background: white;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1rem;
+            color: #2d3748;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover { background: #f7fafc; }
+        .faq-question::after { content: '+'; font-size: 1.5rem; color: #667eea; }
+        .faq-question.open::after { content: '−'; }
+        .faq-answer { padding: 0 1.5rem 1.25rem; display: none; color: #4a5568; }
+        
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: rgba(255,255,255,0.7);
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+        
+        .footer a { color: #667eea; text-decoration: none; }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.9rem; }
+            .hero { padding: 3rem 0; }
+            .section { padding: 3rem 0; }
+            .container { padding: 0 1.25rem; }
+            .cta-secondary { margin-left: 0; margin-top: 1rem; display: inline-block; }
+            .trust-bar span { display: block; margin: 0.3rem 0; }
+            .price-row { gap: 1.5rem; }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Hi, I'm Nico.<br>I'm <span>your AI guy.</span></h1>
+                <p>I set up AI that actually works for your business, and I stick around to make sure it keeps working.</p>
+                <a href="https://calendly.com/nicosiqueira/new-meeting" class="cta-button">Book a Free 15-Min Demo</a>
+            </div>
+        </div>
+    </section>
+    
+
+
+    <!-- THE PROBLEM -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Everyone says "use AI."<br>Nobody shows you how.</h2>
+                <p>You've heard it a hundred times. AI will save you time, grow your business, replace half your tools. But then what?</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card problem-card fade-in">
+                    <div class="card-icon">😵</div>
+                    <h3>Too Many Options</h3>
+                    <p>ChatGPT, Claude, Gemini, Copilot... which one? For what? You don't have time to test 15 tools to find the right one.</p>
+                </div>
+                <div class="card problem-card fade-in">
+                    <div class="card-icon">🤷</div>
+                    <h3>Works... Then Stops</h3>
+                    <p>You set something up, it's cool for a day, then you're stuck. It doesn't do what you need. There's nobody to call.</p>
+                </div>
+                <div class="card problem-card fade-in">
+                    <div class="card-icon">⏰</div>
+                    <h3>No Time For This</h3>
+                    <p>You have a business to run. You can't spend weekends watching YouTube tutorials about prompt engineering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MY STORY -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why I do this</h2>
+            </div>
+            <div class="story fade-in">
+                <p>I spent 20 years in finance and business. Goldman Sachs, startups, running my own companies. I'm not a programmer. I'm a business guy who got obsessed with AI when I realized it could do in minutes what used to take me hours.</p>
+                <p>I set up an AI system for someone close to me. She's smart, she's capable, and she couldn't use it. Not because she's not tech-savvy, but because nobody set it up <em>for her</em>, the way <em>she</em> works.</p>
+                <p><strong>That's when it clicked.</strong> The problem isn't the technology. It's that nobody bridges the gap between what AI can do and what busy people actually need it to do.</p>
+                <p><strong>That's what I do. I'm the bridge.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About me</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.15rem; color: #4a5568; margin-bottom: 1rem;">20 years in finance and business. Goldman Sachs, running startups, and building companies from the ground up. I've been on trading floors, negotiated deals, managed teams, and failed enough times to know what actually works.</p>
+                <p style="font-size: 1.15rem; color: #4a5568; margin-bottom: 1rem;">Today, I combine that business experience with AI to help other business owners stop wasting time on things a machine can do better, so they can focus on what only they can do.</p>
+                <p style="font-size: 1.15rem; color: #4a5568;">I'm not a tech guy selling tech. I'm a business guy who figured out how to make AI actually useful.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT I DO -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What I actually do</h2>
+                <p>Two things. I set it up right, and I make sure it keeps working.</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="card service-card fade-in">
+                    <div class="card-icon">🔧</div>
+                    <h3>Custom AI Setup</h3>
+                    <p>I build AI systems tailored to YOUR business. Not a template, not a generic chatbot. Yours.</p>
+                    <ul>
+                        <li>Personal AI assistant that knows your business</li>
+                        <li>Automated follow-ups and client reminders</li>
+                        <li>Lead capture that works while you sleep</li>
+                        <li>Review requests on autopilot</li>
+                        <li>Whatever YOUR business needs</li>
+                    </ul>
+                </div>
+                <div class="card service-card fade-in">
+                    <div class="card-icon">🤝</div>
+                    <h3>Ongoing Support</h3>
+                    <p>I don't disappear after setup. I'm your AI guy. Text me when something breaks, when you're confused, when you want more.</p>
+                    <ul>
+                        <li>Monthly check-ins and optimization</li>
+                        <li>Text or call me when you need help</li>
+                        <li>System updates as AI evolves</li>
+                        <li>New automations as your business grows</li>
+                        <li>I make sure it actually keeps working</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>How it works</h2>
+                <p>Simple. No contracts, no commitments until you see results.</p>
+            </div>
+            <div class="process-grid fade-in">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>We Talk</h3>
+                    <p>Free 15-minute demo. You tell me what's not working, I show you what AI can fix.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>I Build</h3>
+                    <p>In 7 days, your custom AI system is live. Built for your business, your voice, your clients.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>You Test</h3>
+                    <p>30 days to see real results before you pay full price.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>I Stay</h3>
+                    <p>Monthly support. I optimize, update, and make sure everything keeps running.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>What happens in a live demo</h2>
+            </div>
+            <div class="grid grid-3">
+                <div class="proof-card fade-in">
+                    <p class="quote">I walk into your business with my phone. I ask you one question about your biggest headache. Then I show you, live, on the spot, how AI solves it.</p>
+                    <p class="name">No slideshow. No pitch deck.</p>
+                    <p class="role">Just a real solution in real time.</p>
+                </div>
+                <div class="proof-card fade-in">
+                    <p class="quote">Healthcare providers, gym owners, and service businesses have seen it in action. The reaction is always the same: "Why isn't everyone doing this?"</p>
+                    <p class="name">Tested with real businesses.</p>
+                    <p class="role">Real problems. Real results.</p>
+                </div>
+                <div class="proof-card fade-in">
+                    <p class="quote">Want to see it for yourself? Book a free call and I'll show you exactly what AI can do for YOUR business. No commitment, no pressure.</p>
+                    <p class="name"><a href="https://calendly.com/nicosiqueira/new-meeting" style="color: #667eea; text-decoration: none; font-weight: 700;">Book your live demo →</a></p>
+                    <p class="role"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Founding Member Pricing</h2>
+                <p>I'm accepting a small group of founding clients. Founding members lock in the lowest pricing. Forever.</p>
+            </div>
+            <div class="pricing-wrapper">
+                <div class="pricing-card fade-in">
+                    <div class="founding-badge">Founding Member | Limited Spots</div>
+                    
+                    <div class="price-row">
+                        <div class="price-item">
+                            <div class="price-original">$2,500</div>
+                            <div class="price-current">$500</div>
+                            <div class="price-label">One-time setup</div>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-original">$497/mo</div>
+                            <div class="price-current">$297/mo</div>
+                            <div class="price-label">Ongoing support, locked for life</div>
+                        </div>
+                    </div>
+                    
+                    <div class="spots-left">🔥 Only 5 founding spots available</div>
+                    
+                    <ul class="pricing-features">
+                        <li>Custom AI system built for YOUR business</li>
+                        <li>Automated follow-ups, reminders, and outreach</li>
+                        <li>Personal AI assistant (optional)</li>
+                        <li>30-day trial at founding rate</li>
+                        <li>Direct access to me via text and call</li>
+                        <li>Monthly optimization and support</li>
+                        <li>Founding rate locked in, never increases</li>
+                    </ul>
+                    
+                    <a href="https://calendly.com/nicosiqueira/new-meeting" class="cta-button">Claim Your Founding Spot</a>
+                    <p style="margin-top: 1rem; color: #718096; font-size: 0.9rem;">Free 15-minute demo. No commitment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Questions you probably have</h2>
+            </div>
+            <div style="max-width: 750px; margin: 0 auto;">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">I'm not tech-savvy. Can I still use this?</button>
+                    <div class="faq-answer"><p>That's literally why I exist. I handle all the tech. You tell me what you need, I make it work. If something breaks, you text me. I'm not selling you software to figure out. I'm your AI guy.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">How do I know this will work for MY business?</button>
+                    <div class="faq-answer"><p>That's what the trial period is for. You see real results: more follow-ups, fewer no-shows, clients re-engaging, before you pay full price. If it doesn't work, we part ways and you owe nothing.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">What does "founding member" mean?</button>
+                    <div class="faq-answer"><p>My first 5 clients get the best pricing I'll ever offer, and it's locked in forever. You get a fully custom AI system at a fraction of the regular price. I get case studies and testimonials to grow the business. We both win.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">What kind of businesses do you work with?</button>
+                    <div class="faq-answer"><p>Anyone who has customers and wants to keep them. Gyms, medical practices, salons, law offices, real estate agents, restaurants. If you lose money when clients don't come back, I can help.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">What if I want to cancel?</button>
+                    <div class="faq-answer"><p>You cancel. No contracts, no fees, no guilt trip. I keep clients because the system works, not because of fine print.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">How is this different from hiring a marketing agency?</button>
+                    <div class="faq-answer"><p>Marketing agencies sell you ads to get new customers. I help you KEEP the customers you already have. Most businesses lose 20-30% of clients to poor follow-up. Fix that first. It's cheaper and faster than any ad campaign.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Are there extra costs beyond your fee?</button>
+                    <div class="faq-answer"><p>My fee covers setup and ongoing support. The AI tools themselves have a small monthly cost, usually $20-50 depending on usage. You create your own accounts and control the spending. This is by design: you own everything. If we ever part ways, your system keeps running without me.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Is my data safe? What about security?</button>
+                    <div class="faq-answer"><p>Your AI runs on YOUR accounts, not mine. I use API keys (limited access), never your passwords. Your data never leaves your platforms, is never sold or shared, and is never used to train AI models. You can revoke access at any time. I also help you set up two-factor authentication and do a security audit as part of every setup. <strong>Your data is yours. Period.</strong></p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Can the AI send messages without my approval?</button>
+                    <div class="faq-answer"><p>Only if YOU set it up that way. Every automation is reviewed and approved by you before it goes live. You decide exactly what the AI can and can't do. Nothing happens without your knowledge.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">What if I want to stop? Do I lose everything?</button>
+                    <div class="faq-answer"><p>You keep everything. Your AI system, your configurations, your data. I hand over all documentation and help you transition. No contracts, no penalties, nothing disappears.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="hero" style="padding: 4rem 0;">
+        <div class="container" style="text-align: center;">
+            <div style="position: relative;">
+                <h2 style="color: white;">Ready to have an AI guy?</h2>
+                <p style="font-size: 1.3rem; margin: 2rem 0; opacity: 0.9;">15 minutes. No pitch, no pressure. Just a live demo of what AI can do for your business.</p>
+                <a href="https://calendly.com/nicosiqueira/new-meeting" class="cta-button">Book Your Free Call</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Nico Builds AI</p>
+            <p style="margin-top: 0.75rem;"><a href="tel:+19042740696" style="color: #a0aec0;">(904) 274-0696</a> &bull; <a href="mailto:nico@nicobuildsai.com" style="color: #a0aec0;">nico@nicobuildsai.com</a></p>
+            <p style="margin-top: 0.5rem; opacity: 0.6; font-size: 0.85rem;">Built with AI. Powered by real results.</p>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <style>
+        .chat-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+        .chat-bubble {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 28px;
+            border: none;
+        }
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 28px rgba(102, 126, 234, 0.6);
+        }
+        .chat-bubble .close-icon { display: none; font-size: 24px; }
+        .chat-bubble.open .bot-icon { display: none; }
+        .chat-bubble.open .close-icon { display: block; }
+        .chat-window {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 380px;
+            max-width: calc(100vw - 48px);
+            height: 500px;
+            max-height: calc(100vh - 140px);
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-window.open { display: flex; }
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chat-header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .chat-header-info h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0;
+            color: white;
+        }
+        .chat-header-info span {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .chat-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .chat-msg.bot {
+            background: #f0f0f5;
+            color: #2d3748;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        .chat-msg.user {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-msg.bot a {
+            color: #667eea;
+            text-decoration: underline;
+        }
+        .chat-quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 0 16px 12px;
+        }
+        .chat-quick-btn {
+            background: #f0f0f5;
+            border: 1px solid #e2e2ea;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: #2d3748;
+            font-family: 'Inter', sans-serif;
+        }
+        .chat-quick-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .chat-input-area {
+            display: flex;
+            padding: 12px 16px;
+            border-top: 1px solid #eee;
+            gap: 8px;
+        }
+        .chat-input {
+            flex: 1;
+            border: 1px solid #e2e2ea;
+            border-radius: 24px;
+            padding: 10px 16px;
+            font-size: 14px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .chat-input:focus { border-color: #667eea; }
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .chat-send:hover { opacity: 0.9; }
+        .typing-dots { display: flex; gap: 4px; padding: 4px 0; }
+        .typing-dots span {
+            width: 8px; height: 8px; background: #aaa; border-radius: 50%;
+            animation: typingBounce 1.2s infinite;
+        }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+        .chat-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 18px;
+            height: 18px;
+            background: #e53e3e;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        @media (max-width: 480px) {
+            .chat-window {
+                width: calc(100vw - 16px);
+                right: 8px;
+                bottom: 80px;
+                height: calc(100vh - 100px);
+            }
+        }
+    </style>
+
+    <div class="chat-widget">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-avatar">🤖</div>
+                <div class="chat-header-info">
+                    <h4>Nico's AI Assistant</h4>
+                    <span>Ask me anything about our services</span>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-msg bot">Hey! 👋 I'm Nico's AI assistant. I can answer questions about how AI can help your business. What would you like to know?</div>
+            </div>
+            <div class="chat-quick-replies" id="quickReplies">
+                <button class="chat-quick-btn" onclick="sendQuick('What services do you offer?')">What services do you offer?</button>
+                <button class="chat-quick-btn" onclick="sendQuick('How much does it cost?')">How much does it cost?</button>
+                <button class="chat-quick-btn" onclick="sendQuick('How does AI help my business?')">How does AI help my business?</button>
+                <button class="chat-quick-btn" onclick="sendQuick('Book a free demo')">Book a free demo</button>
+            </div>
+            <div class="chat-input-area">
+                <input class="chat-input" id="chatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendMsg()">
+                <button class="chat-send" onclick="sendMsg()">➤</button>
+            </div>
+        </div>
+        <button class="chat-bubble" id="chatBubble" onclick="toggleChat()">
+            <span class="bot-icon">💬</span>
+            <span class="close-icon">✕</span>
+            <div class="chat-badge" id="chatBadge"></div>
+        </button>
+    </div>
+
+    <script>
+        // Chat Widget - FAQ Knowledge Base
+        const KB = [
+            { keys: ['service', 'offer', 'do you do', 'what do you', 'help'],
+              answer: 'Nico sets up a personal AI assistant customized for your business. Think of it like having a smart employee that handles follow-ups, scheduling, customer questions, and repetitive tasks 24/7. He handles the full setup and stays on as your AI guy for ongoing support. Want to see it in action? <a href="https://calendly.com/nicosiqueira/new-meeting" target="_blank">Book a free 15-min demo</a>.' },
+            { keys: ['cost', 'price', 'pricing', 'how much', 'expensive', 'afford'],
+              answer: 'Right now Nico is offering a Founding Member deal: $500 one-time setup (normally $2,500) plus $297/month for ongoing support, locked in forever. That rate never goes up. There are also small AI tool costs of about $20-50/month that you control directly. Only 5 founding spots available. <a href="https://calendly.com/nicosiqueira/new-meeting" target="_blank">Book a call to learn more</a>.' },
+            { keys: ['how does ai', 'what can ai', 'example', 'use case', 'business'],
+              answer: 'Here are some real examples: A gym could automate member follow-ups so fewer people cancel. A doctor\'s office could handle appointment reminders and reduce no-shows. A restaurant could manage reservations and answer common questions 24/7. A real estate agent could follow up with leads automatically. The AI handles the repetitive stuff so you can focus on what you do best. Want to see what it could do for YOUR business? <a href="https://calendly.com/nicosiqueira/new-meeting" target="_blank">Book a free demo</a>.' },
+            { keys: ['book', 'call', 'demo', 'schedule', 'meet', 'talk', 'calendly', 'appointment'],
+              answer: 'Great! Here\'s the link to book a free 15-minute demo with Nico: <a href="https://calendly.com/nicosiqueira/new-meeting" target="_blank">Book your free demo</a>. He\'ll show you, live, what AI could do for your specific business. No sales pitch, just a real demonstration.' },
+            { keys: ['safe', 'security', 'data', 'privacy', 'trust', 'hack'],
+              answer: 'Great question. Your data stays on YOUR systems. Nico never has access to your passwords or sensitive info. You own all the accounts and everything runs on your infrastructure. If you ever stop working with Nico, your AI keeps running. He takes security seriously. <a href="https://calendly.com/nicosiqueira/new-meeting" target="_blank">Book a call to discuss specifics</a>.' },
+            { keys: ['cancel', 'stop', 'quit', 'contract', 'lock'],
+              answer: 'No long-term contracts. The monthly support is month-to-month. If you want to stop, just let Nico know. Your AI system keeps running because you own everything. He\'ll even help with the transition. Zero risk.' },
+            { keys: ['who is nico', 'about nico', 'background', 'experience', 'qualifications'],
+              answer: 'Nico spent 20 years in finance and business. He worked at Goldman Sachs, ran startups, and built multiple businesses. Now he helps local business owners in Saint Augustine get set up with AI that actually works. He\'s not a tech bro selling software. He\'s a business guy who figured out how to make AI practical.' },
+            { keys: ['saint augustine', 'local', 'location', 'where', 'florida', 'area'],
+              answer: 'Nico is based in Saint Augustine, Florida and works primarily with local businesses. He does in-person demos and setup. Being local means real support, not some faceless company overseas.' },
+            { keys: ['how long', 'setup time', 'timeline', 'how fast'],
+              answer: 'Most setups take about a week. Nico handles everything: the initial consultation, building your custom AI system, testing it, and training you on how to use it. After that, he\'s on call for ongoing support. <a href="https://calendly.com/nicosiqueira/new-meeting" target="_blank">Book a call to get started</a>.' },
+            { keys: ['founding', 'member', 'spot', 'available', 'limited'],
+              answer: 'There are only 5 founding member spots available. Founding members get the lowest price Nico will ever offer: $500 setup (instead of $2,500) and $297/month locked forever. Once the 5 spots fill, the price goes up. <a href="https://calendly.com/nicosiqueira/new-meeting" target="_blank">Book a demo before they\'re gone</a>.' }
+        ];
+
+        const FALLBACK = 'That\'s a great question! I\'d rather have Nico give you a proper answer on that one. He does free 15-minute demos where he can show you exactly how AI works for your business. <a href="https://calendly.com/nicosiqueira/new-meeting" target="_blank">Book a free demo here</a>.';
+
+        function toggleChat() {
+            const win = document.getElementById('chatWindow');
+            const btn = document.getElementById('chatBubble');
+            const badge = document.getElementById('chatBadge');
+            const isOpen = win.classList.contains('open');
+            win.classList.toggle('open');
+            btn.classList.toggle('open');
+            badge.style.display = 'none';
+            if (!isOpen) document.getElementById('chatInput').focus();
+        }
+
+        function sendQuick(text) {
+            document.getElementById('quickReplies').style.display = 'none';
+            addMsg(text, 'user');
+            setTimeout(() => botReply(text), 600 + Math.random() * 800);
+        }
+
+        function sendMsg() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+            input.value = '';
+            document.getElementById('quickReplies').style.display = 'none';
+            addMsg(text, 'user');
+            showTyping();
+            setTimeout(() => { removeTyping(); botReply(text); }, 800 + Math.random() * 1200);
+        }
+
+        function addMsg(text, sender) {
+            const div = document.createElement('div');
+            div.className = 'chat-msg ' + sender;
+            div.innerHTML = text;
+            document.getElementById('chatMessages').appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showTyping() {
+            const div = document.createElement('div');
+            div.className = 'chat-msg bot typing';
+            div.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+            div.id = 'typingIndicator';
+            document.getElementById('chatMessages').appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function removeTyping() {
+            const el = document.getElementById('typingIndicator');
+            if (el) el.remove();
+        }
+
+        function botReply(text) {
+            const lower = text.toLowerCase();
+            let best = null;
+            let bestScore = 0;
+            for (const item of KB) {
+                let score = 0;
+                for (const key of item.keys) {
+                    if (lower.includes(key)) score++;
+                }
+                if (score > bestScore) { bestScore = score; best = item; }
+            }
+            addMsg(best && bestScore > 0 ? best.answer : FALLBACK, 'bot');
+        }
+
+        // Auto-open after 30 seconds if not interacted
+        setTimeout(() => {
+            if (!document.getElementById('chatWindow').classList.contains('open')) {
+                document.getElementById('chatBadge').style.display = 'block';
+            }
+        }, 30000);
+    </script>
+
+    <script>
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const isOpen = answer.style.display === 'block';
+            document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+            document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+            if (!isOpen) { answer.style.display = 'block'; btn.classList.add('open'); }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
