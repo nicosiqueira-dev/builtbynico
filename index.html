@@ -106,13 +106,25 @@
       align-items: center;
       justify-content: space-between;
     }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     .nav-logo img {
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       border: 2px solid var(--orange);
       object-fit: cover;
     }
+    .nav-logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+    .nav-logo-text span { color: var(--orange); }
     .nav-cta {
       font-size: 0.9rem;
       padding: 10px 22px;
@@ -505,6 +517,7 @@
     <div class="container">
       <a href="#" class="nav-logo">
         <img src="zeus-avatar.jpg" alt="Built by Nico">
+        <span class="nav-logo-text">Built by <span>Nico</span></span>
       </a>
       <a href="https://calendly.com/builtbynico" target="_blank" class="btn btn-orange nav-cta">
         Book a 30-Min Demo
@@ -531,6 +544,9 @@
         <a href="https://calendly.com/builtbynico" target="_blank" class="btn btn-orange btn-lg">
           Book a Free 30-Min Demo
         </a>
+        <a href="#pricing" class="btn btn-dark btn-lg">
+          View Pricing
+        </a>
       </div>
     </div>
   </section>
@@ -550,6 +566,32 @@
         <div>
           <div class="stat-number">24/7</div>
           <div class="stat-label">Your AI works while you sleep</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section style="background:#0f0a05; padding:100px 0;">
+    <div class="container text-center">
+      <div class="section-label">The Problem</div>
+      <h2 class="section-title">AI tools are everywhere. Nobody shows you how to use them.</h2>
+      <p class="section-subtitle">Most business owners waste hours trying to set up tools that promise to save them time. You end up more frustrated than before.</p>
+      <div class="cards-grid" style="margin-top:48px;">
+        <div class="service-card">
+          <div class="service-icon">😵</div>
+          <h3>Tool Overwhelm</h3>
+          <p>ChatGPT, Zapier, Make, n8n, Notion AI... there are hundreds of tools and no clear path. You waste time testing things that don't work together.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💸</div>
+          <h3>Wasted Money</h3>
+          <p>You pay for subscriptions that sit unused. Or hire someone who sets it up once and disappears when something breaks.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⏳</div>
+          <h3>Zero Time</h3>
+          <p>You're running a business. You don't have time to become an AI expert. But you know your competitors are pulling ahead.</p>
         </div>
       </div>
     </div>
@@ -607,7 +649,7 @@
   </section>
 
   <!-- PRICING -->
-  <section class="pricing">
+  <section class="pricing" id="pricing">
     <div class="container text-center">
       <div class="section-label">Pricing</div>
       <h2 class="section-title">Simple, honest pricing</h2>
